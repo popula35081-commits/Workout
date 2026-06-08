@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout 7 Days App</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f2f6ff;
+    }
+
+    /* LOGIN PAGE */
+    .login {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .login-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px;
+      width: 95%;
+      background: #2d6cff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #1a56e0;
+    }
+
+    /* DASHBOARD PAGE */
+    .app {
+      display: none;
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .days button {
+      background: #fff;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+
+    .days button:hover {
+      background: #eef3ff;
+      border-color: #2d6cff;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    ul {
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="login" id="loginPage">
+  <div class="login-box">
+    <h2>🏋️ Workout App</h2>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button onclick="login()">เข้าสู่ระบบ</button>
+  </div>
+</div>
+
+<div class="app" id="app">
+
+  <h2>📅 Workout 7 Days</h2>
+
+  <div class="days">
+    <button onclick="showDay(1)">Day 1</button>
+    <button onclick="showDay(2)">Day 2</button>
+    <button onclick="showDay(3)">Day 3</button>
+    <button onclick="showDay(4)">Day 4</button>
+    <button onclick="showDay(5)">Day 5</button>
+    <button onclick="showDay(6)">Day 6</button>
+    <button onclick="showDay(7)">Day 7</button>
+  </div>
+
+  <div class="card" id="workoutBox">
+    เลือกวันเพื่อดูตารางออกกำลังกาย
+  </div>
+
+</div>
+
+<script>
+  // ฟังก์ชันสำหรับล็อกอิน (ซ่อนหน้า Login และเปิดหน้า App)
+  function login() {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }
+
+  // ข้อมูลท่าออกกำลังกายในแต่ละวัน
+  const workouts = {
+    1: ["Push-up", "Dumbbell Press", "Tricep Dip", "Chest Fly", "Incline Push-up"],
+    2: ["Squat", "Lunge", "Leg Press", "Calf Raise", "Wall Sit"],
+    3: ["Sit-up", "Plank", "Leg Raise", "Russian Twist", "Bicycle Crunch"],
+    4: ["Jumping Jack", "High Knees", "Burpees", "Mountain Climber", "Skipping"],
+    5: ["Pull-up", "Deadlift", "Bent-over Row", "Superman", "Lat Pulldown"],
+    6: ["Yoga Stretch", "Child Pose", "Cobra Stretch", "Hamstring Stretch", "Neck Stretch"],
+    7: ["Burpees", "Squat Jump", "Push-up", "Plank", "Mountain Climber"]
+  };
+
+  // ฟังก์ชันสำหรับแสดงตารางออกกำลังกายเมื่อกดปุ่ม Day
+  function showDay(day) {
+    let list = workouts[day]
+      .map(x => `<li>${x} - 3 sets</li>`)
+      .join("");
+
+    document.getElementById("workoutBox").innerHTML = `
+      <h3>📋 ตารางออกกำลังกาย Day ${day}</h3>
+      <ul>${list}</ul>
+    `;
+  }
+</script>
+
+</body>
+</html>
